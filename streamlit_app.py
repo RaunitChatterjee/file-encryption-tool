@@ -3,30 +3,34 @@ import base64
 import hashlib
 from cryptography.fernet import Fernet
 
+# Page configuration
 st.set_page_config(
     page_title="File Encryption Tool",
     page_icon="🔐",
     layout="centered"
 )
 
+# Function to generate encryption key
 def generate_key(password):
     key = hashlib.sha256(password.encode()).digest()
     return base64.urlsafe_b64encode(key)
 
+# Title and description
 st.title("🔐 File Encryption & Decryption Tool")
-st.write("Secure files using password-based AES encryption.")
+st.write("Secure your files using password-based AES encryption.")
 
 st.divider()
 
+# Upload file
 uploaded_file = st.file_uploader("Upload a file")
 
-if uploaded_file:
+if uploaded_file is not None:
 
     st.subheader("Choose Operation")
 
     action = st.radio(
         "Select action",
-        ["Encrypt File", "Decrypt File"]
+        ("Encrypt File", "Decrypt File")
     )
 
     password = st.text_input("Enter Password", type="password")
@@ -71,7 +75,8 @@ if uploaded_file:
 
 st.divider()
 
+# Reset button
 if st.button("Reset Tool"):
-    st.experimental_rerun()
+    st.rerun()
 
 st.caption("Built by Raunit Chatterjee • Python Encryption Tool")
