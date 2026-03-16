@@ -2,6 +2,15 @@
 
 A Python-based tool that securely encrypts and decrypts files using AES encryption.
 
+## 🌐 Live Demo
+
+Try the web app here:
+
+https://file-encryption-tool-bq4nesb7dd5vmbxqrkrzea.streamlit.app/
+
+
+
+
 ## Features
 - AES-based file encryption
 - Password-protected security
