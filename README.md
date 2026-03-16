@@ -56,5 +56,10 @@ Encrypted output:
 
 sample.txt.enc
 
+
+## Demo
+
+![Encryption Tool Demo](assets/demo.png)
+
 ## Author
 Raunit Chatterjee
