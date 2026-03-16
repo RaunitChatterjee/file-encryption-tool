@@ -1,14 +1,17 @@
 import base64
 import hashlib
+import getpass
 from cryptography.fernet import Fernet
+
 
 def generate_key(password):
     key = hashlib.sha256(password.encode()).digest()
     return base64.urlsafe_b64encode(key)
 
+
 def encrypt_file():
     file_name = input("Enter file to encrypt: ")
-    password = input("Enter password: ")
+    password = getpass.getpass("Enter password: ")
 
     key = generate_key(password)
     f = Fernet(key)
@@ -23,9 +26,10 @@ def encrypt_file():
 
     print("File encrypted successfully!")
 
+
 def decrypt_file():
     file_name = input("Enter file to decrypt: ")
-    password = input("Enter password: ")
+    password = getpass.getpass("Enter password: ")
 
     key = generate_key(password)
     f = Fernet(key)
@@ -45,6 +49,7 @@ def decrypt_file():
 
     except:
         print("Wrong password or corrupted file")
+
 
 print("1. Encrypt File")
 print("2. Decrypt File")
