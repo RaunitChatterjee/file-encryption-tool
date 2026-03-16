@@ -12,45 +12,55 @@ def generate_key(password):
 st.title("🔐 File Encryption & Decryption Tool")
 st.write("Secure your files using password-based AES encryption.")
 
-password = st.text_input("Enter Password", type="password")
+uploaded_file = st.file_uploader("Upload a file")
 
-uploaded_file = st.file_uploader("Upload File")
+if uploaded_file:
 
-col1, col2 = st.columns(2)
+    st.subheader("Choose Action")
 
-if uploaded_file and password:
+    action = st.radio(
+        "Select operation",
+        ("Encrypt File", "Decrypt File")
+    )
 
-    data = uploaded_file.read()
-    key = generate_key(password)
-    f = Fernet(key)
+    password = st.text_input("Enter Password", type="password")
 
-    with col1:
-        if st.button("Encrypt File"):
-            encrypted = f.encrypt(data)
+    if password:
 
-            st.success("File encrypted successfully!")
+        data = uploaded_file.read()
 
-            st.download_button(
-                label="Download Encrypted File",
-                data=encrypted,
-                file_name="encrypted_file.enc"
-            )
+        key = generate_key(password)
+        f = Fernet(key)
 
-    with col2:
-        if st.button("Decrypt File"):
-            try:
-                decrypted = f.decrypt(data)
+        if st.button("Process File"):
 
-                st.success("File decrypted successfully!")
+            if action == "Encrypt File":
+
+                encrypted = f.encrypt(data)
+
+                st.success("File encrypted successfully!")
 
                 st.download_button(
-                    label="Download Decrypted File",
-                    data=decrypted,
-                    file_name="decrypted_file.txt"
+                    label="Download Encrypted File",
+                    data=encrypted,
+                    file_name="encrypted_file.enc"
                 )
 
-            except:
-                st.error("Wrong password or invalid file")
+            else:
+
+                try:
+                    decrypted = f.decrypt(data)
+
+                    st.success("File decrypted successfully!")
+
+                    st.download_button(
+                        label="Download Decrypted File",
+                        data=decrypted,
+                        file_name="decrypted_file.txt"
+                    )
+
+                except:
+                    st.error("Wrong password or invalid encrypted file")
 
 st.markdown("---")
 st.caption("Built by Raunit Chatterji • Python Encryption Tool")
