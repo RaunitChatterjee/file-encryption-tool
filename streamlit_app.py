@@ -74,4 +74,4 @@ st.divider()
 if st.button("Reset Tool"):
     st.experimental_rerun()
 
-st.caption("Built by Raunit Chatterji • Python Encryption Tool")
+st.caption("Built by Raunit Chatterjee • Python Encryption Tool")
