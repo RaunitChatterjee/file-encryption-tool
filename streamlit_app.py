@@ -80,4 +80,4 @@ if st.button("Reset Tool"):
     st.session_state.uploaded_file = None
     st.experimental_set_query_params()
 
-st.caption("Built by Raunit Chatterjee • Python Encryption Tool")
+st.caption("Built by Vrinda Vasudev • Python Encryption Tool")
